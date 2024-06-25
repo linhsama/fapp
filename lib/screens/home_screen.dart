@@ -206,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     )
-                  : AppBar(),
+                  : null,
               body: Column(
                 children: <Widget>[
                   if (progress < 1.0) LinearProgressIndicator(value: progress),
