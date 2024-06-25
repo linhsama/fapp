@@ -32,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
     initConnectivity();
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
-    _checkPermissions(); // Check permissions on init
     _navigateToNextScreen();
   }
 
@@ -62,23 +61,6 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       _connectionStatus = result;
     });
-  }
-
-  void _checkPermissions() async {
-    bool status;
-    final deviceInfo = await DeviceInfoPlugin().androidInfo;
-    if (deviceInfo.version.sdkInt > 32) {
-      status = await Permission.photos.request().isGranted;
-    } else {
-      status = await Permission.storage.request().isGranted;
-    }
-
-    if (!status) {
-      // Quyền bị từ chối, hiển thị thông báo cho người dùng
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Permission denied for storage")),
-      );
-    }
   }
 
   void _navigateToNextScreen() {

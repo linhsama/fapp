@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Strings
 const appName = "f-app";
 const appVersion = "Version 1.0";
+const appBar = false;
 
 // API
 const apiHome = "https://www.google.com/";

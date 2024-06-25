@@ -182,29 +182,31 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           : Scaffold(
               backgroundColor: Colors.white,
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: progress < 1.0
-                    ? Row(
-                        children: [
-                          "loading".text.color(purpleColor).make(),
-                          20.widthBox,
-                          const SpinKitThreeBounce(
-                            color: Colors.greenAccent,
-                            size: 30.0,
-                          ),
-                        ],
-                      )
-                    : appName.text.color(purpleColor).make(),
-                actions: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.replay),
-                    onPressed: () {
-                      _webViewController.reload();
-                    },
-                  ),
-                ],
-              ),
+              appBar: appBar
+                  ? AppBar(
+                      automaticallyImplyLeading: false,
+                      title: progress < 1.0
+                          ? Row(
+                              children: [
+                                "loading".text.color(purpleColor).make(),
+                                20.widthBox,
+                                const SpinKitThreeBounce(
+                                  color: Colors.greenAccent,
+                                  size: 30.0,
+                                ),
+                              ],
+                            )
+                          : appName.text.color(purpleColor).make(),
+                      actions: <Widget>[
+                        IconButton(
+                          icon: const Icon(Icons.replay),
+                          onPressed: () {
+                            _webViewController.reload();
+                          },
+                        ),
+                      ],
+                    )
+                  : AppBar(),
               body: Column(
                 children: <Widget>[
                   if (progress < 1.0) LinearProgressIndicator(value: progress),
